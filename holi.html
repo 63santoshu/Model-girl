@@ -1,0 +1,126 @@
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holi Gift Card</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(100deg,red,yellow,green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .card {
+    width: 300px;
+    background-color:hsl(291, 65%, 62%);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #nameInput {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .button:hover {
+    background-color: #45a049;
+  }
+
+  .message {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .holi-colors {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .color-circle:hover {
+    border-color: hsl(0, 81%, 46%);
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Holi Gift Card</h2>
+  <input type="text" id="nameInput" placeholder="Ente your  Name">
+  <div class="holi-colors">
+    <div class="color-circle" style="background-color: hsl(0, 94%, 52%)" onclick="changeColor('#FF5733')"></div>
+    <div class="color-circle" style="background-color: #F0C300" onclick="changeColor('#F0C300')"></div>
+    <div class="color-circle" style="background-color: #00C853" onclick="changeColor('#00C853')"></div>
+    <div class="color-circle" style="background-color: hsl(315, 87%, 50%)" onclick="changeColor('#2196F3')"></div>
+    <div class="color-circle" style="background-color: #9C27B0" onclick="changeColor('#9C27B0')"></div>
+  </div>
+  <button class="button" onclick="generateCard()">Generate Card</button>
+  <div id="message" class="message"></div>
+</div>
+
+<script>
+  function generateCard() {
+    const name = document.getElementById('nameInput').value;
+    const selectedColor = document.querySelector('.color-circle.selected');
+    const messageElem = document.getElementById('message');
+
+    if (!name) {
+      messageElem.innerText = 'Please enter recipient\'s name.';
+      return;
+    }
+
+    if (!selectedColor) {
+      messageElem.innerText = 'Please select a color.';
+      return;
+    }
+
+    const bgColor = selectedColor.style.backgroundColor;
+    messageElem.style.color = bgColor;
+    messageElem.innerHTML = `Happy Holi, ${name}!`;
+    
+
+  }
+
+  function changeColor(color) {
+    const colorCircles = document.querySelectorAll('.color-circle');
+    colorCircles.forEach(circle => {
+      circle.classList.remove('selected');
+    });
+    this.event.target.classList.add('selected');
+  }
+</script>
+
+</body>
+</html>
